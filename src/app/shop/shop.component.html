@@ -1,0 +1,74 @@
+<body>
+  <div class="page">
+    <div class="panel-block">
+      <button class="admin-btn" routerLink="admin">Admin panel</button>
+    </div>
+    <div class="top-menu">
+      <ul class="top-menu-list">
+        <li
+          class="top-menu-item"
+          [value]="category"
+          *ngFor="let category of categories"
+        >
+          <button class="top-menu-btn" (click)="getName(category)">
+            {{ category }}
+          </button>
+        </li>
+      </ul>
+      <button routerLink="basket" class="food-cart">🛒</button>
+    </div>
+    <div class="filter-block">
+      <div class="filter">
+        <p>Filter</p>
+        <ul class="filter-list">
+          <li class="filter-list-item" (click)="sortDescending()">
+            Filter by decreasing price
+          </li>
+          <li class="filter-list-item" (click)="sortAscending()">
+            Filter by increasing price
+          </li>
+        </ul>
+      </div>
+      <p class="filterSelected" *ngIf="filterSelected">{{ filterContent }}</p>
+      <span class="cart-value">Items in the cart: {{ numbOfGoods }}</span>
+    </div>
+    <ul class="product-container">
+      <li class="product-container-list" *ngFor="let product of products">
+        <p class="title">{{ product.title }}</p>
+
+        <div class="list-block">
+          <div>
+            <img class="product-container_img" src="{{ product.image }}" />
+          </div>
+          <div class="product-container-info">
+            <div>
+              <p class="product-container-description">
+                {{ product.description }}
+              </p>
+              <button
+                class="description-button"
+                (click)="showCart(product.id)"
+                routerLink="cart"
+              >
+                description
+              </button>
+            </div>
+            <button
+              (click)="addGoods()"
+              (click)="addToBasket(product)"
+              class="product-container-button"
+            >
+              {{ product.price }} $
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="btn-block">
+      <button class="back buttons" (click)="leafThroughBack()"><</button>
+      <span class="pageNumber">{{ pageNumber }} / {{ maxPages }}</span>
+      <button class="next buttons" (click)="leafThroughNext()">></button>
+    </div>
+  </div>
+</body>
+<router-outlet></router-outlet>

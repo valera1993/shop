@@ -1,0 +1,26 @@
+<body>
+  <div class="btn-back-block">
+    <button class="back" (click)="back()">Back</button>
+  </div>
+  <div *ngIf="basketArray" class="page">
+    <div
+      class="basket-main-info"
+      *ngFor="let item of basketArray; let i = index"
+    >
+      <div class="item-box">
+        <p class="item-numb">{{ i + 1 }}.</p>
+        <img class="product-icon" src="{{ item.image }}" alt="" />
+        <p class="title">{{ item.title }}</p>
+      </div>
+      <p class="price">price: {{ item.price }} $</p>
+    </div>
+    <div class="total-price-box">
+      <p class="totalPrice">
+        Total price: {{ totalPrice | number : "1.1-2" }} $
+      </p>
+    </div>
+    <div class="order-block">
+      <button class="order" (click)="getOrderInfo()">Order</button>
+    </div>
+  </div>
+</body>

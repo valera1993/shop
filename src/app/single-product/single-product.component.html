@@ -1,0 +1,21 @@
+<body>
+  <div class="btn-back-block">
+    <button class="back" (click)="back()">Back</button>
+  </div>
+  <div class="page">
+    <p class="date" *ngIf="date">
+      Purchase made: {{ date | date : "dd.LL.yyyy" }}
+    </p>
+    <div class="information-block" *ngFor="let item of productArray">
+      <div class="data-block">
+        <p>Product name: {{ item.title }}</p>
+        <p>User id: {{ item.userId }}</p>
+        <p>Product id: {{ item.id }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+
+        <p class="price">Price: {{ item.price }} $</p>
+      </div>
+    </div>
+    <p class="total-price" *ngIf="fullPrice">Full price: {{ fullPrice | number : "1.1-2" }} $</p>
+  </div>
+</body>

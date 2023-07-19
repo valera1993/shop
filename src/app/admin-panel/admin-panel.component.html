@@ -1,0 +1,29 @@
+<body>
+  <div class="btn-back-block">
+    <button class="back" (click)="back()">Back</button>
+  </div>
+  <div class="page">
+    <div class="date-block">
+    <input class="start-date" #start type="date" (change)="choseStartDate(start.value)" >
+    <input class="end-date" #end (change)=choseEndDate(end.value) type="date">
+    <button class="select" (click)='selectDate()'>Select date</button>
+    <!-- <button (click)=showObject();>Update</button> -->
+  </div>
+    <div class="info-block-container">
+      <div class="info-block" *ngFor="let item of basketArray; let i = index">
+        <p class="title">Purchase №: {{ i + 1 }}</p>
+        <p class="date">Purchase date: {{ item.date |  date: 'dd.LL.yyyy' }}</p>
+        <p>User ID: {{ item.userId }}</p>
+        <div class="singleProduct" *ngFor="let product of item.products; let k = index">
+          <p>Product id: {{ product.productId }}</p>
+          <p>Quantity: {{ product.quantity }}</p>
+          <p class="price">Price: {{ product.sum }} $</p>
+        </div>
+        <button routerLink="/admin/info" class="show-info-btn" (click)="getProductInfo(item)">show info</button>
+      </div>
+    </div>
+    <p class="total-price" *ngIf="basketArray">
+      Total amount of purchases: {{ basketArray.fullSum | number : "1.1-2" }} $
+    </p>
+  </div>
+</body>

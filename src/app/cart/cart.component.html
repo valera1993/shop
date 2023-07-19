@@ -1,0 +1,18 @@
+<body>
+  <div class="btn-back-block">
+    <button class="back" (click)="back()">Back</button>
+    <div class="foot-cart-block">
+      <button routerLink="../basket" class="food-cart">🛒</button>
+      <span class="cart-value">Items in the cart: {{ numbOfGoods }}</span>
+    </div>
+  </div>
+
+  <div class="page" *ngIf="arrayWithDescription">
+    <h2 class="title">{{ arrayWithDescription.title }}</h2>
+    <p class="description">{{ arrayWithDescription.description }}</p>
+    <p class="rate">Product rating: {{ arrayWithDescription.rating.rate }}</p>
+    <img class="page-img" src="{{ arrayWithDescription.image }}" alt="" />
+    <button class="basket" (click)='addGoods()' (click)="addItem(arrayWithDescription)">{{ arrayWithDescription.price }} $</button>
+  </div>
+</body>
+<router-outlet></router-outlet>
